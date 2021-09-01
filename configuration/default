@@ -1,0 +1,34 @@
+default menu.c32
+LABEL local
+        MENU LABEL Boot from the local hard drive
+        MENU default
+        LOCALBOOT 0 
+LABEL install1
+	MENU LABEL Install Ubuntu 20.04
+        KERNEL http://archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/linux
+        APPEND vga=786 initrd=http://archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/initrd.gz auto=true priority=critical url=tftp://192.168.0.148/preseed/preseed-focal.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
+
+LABEL install2
+        MENU LABEL Install Ubuntu 18.04
+        KERNEL http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux
+        APPEND vga=788 initrd=http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz auto=true priority=critical url=tftp://192.168.0.148/preseed/preseed-bionic.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
+
+LABEL install3
+        MENU LABEL Install Ubuntu 16.04
+        KERNEL http://archive.ubuntu.com/ubuntu/dists/xenial-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/linux
+        APPEND vga=786 initrd=http://archive.ubuntu.com/ubuntu/dists/xenial-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/initrd.gz auto=true priority=critical url=tftp://192.168.0.148/preseed/preseed-xenial.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
+
+LABEL install4
+        MENU LABEL Install Debian 11
+        KERNEL http://ftp.debian.org/debian/dists/Debian11.0/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/Debian11.0/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=tftp://192.168.0.148/preseed/preseed-bullseye.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
+
+LABEL install5
+        MENU LABEL Install Debian 10
+        KERNEL http://ftp.debian.org/debian/dists/Debian10.10/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/Debian10.10/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=tftp://192.168.0.148/preseed/preseed-buster.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
+
+LABEL install6
+        MENU LABEL Install Debian 9
+        KERNEL http://ftp.debian.org/debian/dists/Debian9.13/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/Debian9.13/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=tftp://192.168.0.148/preseed/preseed-stretch.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
