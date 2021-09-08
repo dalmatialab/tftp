@@ -1,4 +1,5 @@
 default menu.c32
+TIMEOUT 30
 LABEL local
         MENU LABEL Boot from the local hard drive
         MENU default

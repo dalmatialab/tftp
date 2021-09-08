@@ -6,14 +6,16 @@ RUN apt-get update && apt-get install -y tftpd-hpa wget genisoimage syslinux pxe
 
 EXPOSE 69/udp
 
-RUN mkdir -p /var/lib/tftpboot/pxelinux.cfg
+ENV PXEBOOT=false
 
-RUN mv /usr/lib/PXELINUX/lpxelinux.0 /var/lib/tftpboot
+RUN mkdir -p /tmp/tftpboot/pxelinux.cfg
 
-RUN ["/bin/bash", "-c", "cp -v /usr/lib/syslinux/modules/bios/{menu.c32,ldlinux.c32,libcom32.c32,libutil.c32} /var/lib/tftpboot"]
+COPY ./preseed /tmp/tftpboot/preseed/
 
-COPY ./configuration/default /var/lib/tftpboot/pxelinux.cfg
+COPY ./configuration/pxescript.sh /.
 
-COPY ./preseed /var/lib/tftpboot/preseed/
+COPY ./configuration/default /tmp/tftpboot/pxelinux.cfg
 
-CMD /usr/sbin/in.tftpd -v -L --secure /var/lib/tftpboot
+ENTRYPOINT ["/bin/bash","/pxescript.sh"]
+
+CMD ["-v -L --secure /srv/tftp"]

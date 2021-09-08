@@ -11,11 +11,21 @@ Preboot Execution Environment(PXE) is a client-server interface that allows comp
 
 # How to use this image
 
+## Start standard TFTP server
+
+	$ docker run -d --name some-tftp -p 69:69/udp image:tag 
+ 
 ## Start TFTP server with PXE boot configuration
 
-	docker run -d --name tftp-pxeboot -p 69:69/udp image:tag
+	$ docker run -d --name tftp-pxeboot -p 69:69/udp -e PXEBOOT=true image:tag
 Where:
  - *tag* is docker image version
+
+## Environment variables
+
+**PXEBOOT**
+
+This variable defines the role of the tftp server, if the value is true, server is used for PXE boot, otherwise server is used as standard TFTP server. Default value: false
 
 ## Ports
 
@@ -23,18 +33,18 @@ TFTP is a UDP-based protocol, and it uses port 69 for TFTP transfers.
 
 ## Volumes
 
-To use Your preseed files, mount container path `/var/lib/tftpboot/preseed/` to host path.
+To use Your files for TFTP server, mount container path `/srv/tftp/` to host path.
 
-	$ -v some-host-path:/var/lib/tftpboot/preseed/
+	$ -v some-host-path:/srv/tftp
 
-To use Your menu file for PXE boot, mount container path  `/var/lib/tftpboot/pxelinux.cfg/default` to host path.
-	$ -v some-host-path:/var/lib/tftpboot/pxelinux.cfg/default
+To use Your PXE boot configuration, mount container path `/var/lib/tftpboot/` to host path. If value of ENV variable PXEBOOT is true, configuration will be copied to the TFTP directory.
 
-To use any other setup files, menu files or other, mount container path `/var/lib/tftpboot/` to host path.
 	$ -v some-host-path:/var/lib/tftpboot/
 
 ## NOTE 
 
-This Image uses HTTP protocol for PXE boot, so boot filename is `lpexlinux.0` instead of standard `pxelinux.0` file. Difference betweenthese two files, is that `lpxelinux.0` enables downloading and loading initial setup files(initrd.gz, linux) from HTTP server directly, instead of downloading and loading them from the local source. Boot file `lpexlinux.0` also provides loading files from local source.
-Image provides installation of Ubuntu (Focal, Bionic, Xenial) and Debian (Bullseye, Buster, Stretch) distribution. To use your preseed files for these distributions, they should be named as `preseed-codename.cfg` and mounted to the container.
+Details about tftp parameters may be found [here](https://manpages.debian.org/testing/tftpd-hpa/tftpd.8.en.html).
+
+This Image uses HTTP protocol for PXE boot, so boot filename is `lpexlinux.0` instead of standard `pxelinux.0` file. Difference between these two files, is that `lpxelinux.0` enables downloading and loading initial setup files (initrd.gz, linux) from HTTP server directly, instead of downloading and loading them from the local source. Boot file `lpexlinux.0` also provides loading files from local source.
+Default image configuration provides installation of Ubuntu (Focal, Bionic, Xenial) and Debian (Bullseye, Buster, Stretch) distribution.
  
