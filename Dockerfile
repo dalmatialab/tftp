@@ -2,15 +2,13 @@ FROM ubuntu:20.04
 
 LABEL maintainer="dalmatialab"
 
-RUN apt-get update && apt-get install -y tftpd-hpa wget genisoimage syslinux pxelinux
+RUN apt-get update && apt-get install -y tftpd-hpa wget genisoimage syslinux pxelinux tzdata
 
 EXPOSE 69/udp
 
-ENV PXEBOOT=false
+ENV PXEBOOT="false" DEBIAN_FRONTEND="noninteractive" TZ="Europe/Zagreb"
 
 RUN mkdir -p /tmp/tftpboot/pxelinux.cfg
-
-COPY ./preseed /tmp/tftpboot/preseed/
 
 COPY ./configuration/pxescript.sh /.
 

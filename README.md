@@ -3,7 +3,7 @@
 
 # What is TFTP server ?
 
-TFTP Server is used for simple file transfer (typically for boot-loading remote devices). Trivial File Transfer Protocol (TFTP) is a simple protocol for exchanging files between two TCP/IP machines. TFTP servers allow connections from a TFTP Client for sending and receiving files. The TFTP protocol supports only file send and receive operations. File delete, move, and rename are not supported. Due to its limitations, TFTP is acomplement to the regular FTP and not a replacement. It is only used when its simplicity is important, and its lack of features is acceptable. The most common application is bootstrapping, although it can be used for other purposes as well.
+TFTP Server is used for simple file transfer (typically for boot-loading remote devices). Trivial File Transfer Protocol (TFTP) is a simple protocol for exchanging files between two TCP/IP machines. TFTP servers allow connections from a TFTP Client for sending and receiving files. The TFTP protocol supports only file send and receive operations. File delete, move, and rename are not supported. Due to its limitations, TFTP is a complement to the regular FTP and not a replacement. It is only used when its simplicity is important, and its lack of features is acceptable. The most common application is bootstrapping, although it can be used for other purposes as well.
 
 # What is PXE boot ?
 
@@ -25,7 +25,11 @@ Where:
 
 **PXEBOOT**
 
-This variable defines the role of the tftp server, if the value is true, server is used for PXE boot, otherwise server is used as standard TFTP server. Default value: false
+This variable defines the role of the TFTP server, if the value is true, server is used for PXE boot, otherwise server is used as standard TFTP server. Default value: false
+
+**TZ**
+
+This variable defines the timezone for the server. Default value: Europe/Zagreb
 
 ## Ports
 
@@ -37,14 +41,13 @@ To use Your files for TFTP server, mount container path `/srv/tftp/` to host pat
 
 	$ -v some-host-path:/srv/tftp
 
-To use Your PXE boot configuration, mount container path `/var/lib/tftpboot/` to host path. If value of ENV variable PXEBOOT is true, configuration will be copied to the TFTP directory.
+To use Your PXE boot configuration, mount container path `/var/lib/tftpboot/` to host path. If the value of ENV variable PXEBOOT is true, configuration will be copied to the TFTP directory.
 
 	$ -v some-host-path:/var/lib/tftpboot/
 
 ## NOTE 
 
-Details about tftp parameters may be found [here](https://manpages.debian.org/testing/tftpd-hpa/tftpd.8.en.html).
+Details about TFTP parameters may be found [here](https://manpages.debian.org/testing/tftpd-hpa/tftpd.8.en.html).
 
-This Image uses HTTP protocol for PXE boot, so boot filename is `lpexlinux.0` instead of standard `pxelinux.0` file. Difference between these two files, is that `lpxelinux.0` enables downloading and loading initial setup files (initrd.gz, linux) from HTTP server directly, instead of downloading and loading them from the local source. Boot file `lpexlinux.0` also provides loading files from local source.
-Default image configuration provides installation of Ubuntu (Focal, Bionic, Xenial) and Debian (Bullseye, Buster, Stretch) distribution.
- 
+This image uses HTTP protocol for PXE boot, so boot filename is `lpexlinux.0` instead of standard `pxelinux.0` file. The difference between these two files, is that `lpxelinux.0` enables downloading and loading initial setup files (initrd.gz, linux) from HTTP server directly, instead of downloading and loading them from the local source. Boot file `lpexlinux.0` also provides loading files from local source.
+Default image configuration provides installation of Ubuntu (Focal, Bionic, Xenial) and Debian (Bullseye, Buster, Stretch) distribution. Preseed files for mentioned distributions are fetched from the GitHub repository.
