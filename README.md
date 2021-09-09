@@ -1,3 +1,4 @@
+![example workflow](https://github.com/dalmatialab/tftp/actions/workflows/main.yml/badge.svg)
 # Supported tags and respective Dockerfile links
 
  - [5.2-rc-2](https://github.com/dalmatialab/tftp/blob/9f31d326336cbc7b9b641bb4eefe50511b4f9d69/Dockerfile)
