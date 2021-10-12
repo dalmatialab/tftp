@@ -21,15 +21,15 @@ LABEL install3
 
 LABEL install4
         MENU LABEL Install Debian 11
-        KERNEL http://ftp.debian.org/debian/dists/Debian11.0/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
-        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/Debian11.0/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=https://raw.githubusercontent.com/dalmatialab/tftp/main/preseed/preseed-debian.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
+        KERNEL http://ftp.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=https://raw.githubusercontent.com/dalmatialab/tftp/main/preseed/preseed-debian.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
 
 LABEL install5
         MENU LABEL Install Debian 10
-        KERNEL http://ftp.debian.org/debian/dists/Debian10.10/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
-        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/Debian10.10/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=https://raw.githubusercontent.com/dalmatialab/tftp/main/preseed/preseed-debian.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
+        KERNEL http://ftp.debian.org/debian/dists/buster/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/buster/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=https://raw.githubusercontent.com/dalmatialab/tftp/main/preseed/preseed-debian.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
 
 LABEL install6
         MENU LABEL Install Debian 9
-        KERNEL http://ftp.debian.org/debian/dists/Debian9.13/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
-        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/Debian9.13/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=https://raw.githubusercontent.com/dalmatialab/tftp/main/preseed/preseed-debian.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
+        KERNEL http://ftp.debian.org/debian/dists/stretch/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+        APPEND vga=786 initrd=http://ftp.debian.org/debian/dists/stretch/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz auto=true priority=critical preseed/url=https://raw.githubusercontent.com/dalmatialab/tftp/main/preseed/preseed-debian.cfg netcfg/choose_interface=auto DEBCONF_DEBUG=5 --
